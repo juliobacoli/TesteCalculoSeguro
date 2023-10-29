@@ -19,8 +19,20 @@ namespace TesteCalculoSeguro.Infrastructure.Persistence
             {
                 x.HasKey(k => k.Cpf);
 
-            });              
+            });
 
+            modelBuilder.Entity<Veiculo>(x =>
+            {
+                x.HasKey(k => k.Id);
+            });
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("TesteCalculoSeguroDb");
+            }
         }
     }
 }

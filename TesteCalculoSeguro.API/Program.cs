@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using TesteCalculoSeguro.Application.Services;
 using TesteCalculoSeguro.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var connectionString = builder.Configuration.GetConnectionString("TesteCalculoSeguro");
+var connectionString = builder.Configuration.GetConnectionString("TesteCalculoSeguroDb");
 builder.Services.AddDbContext<SeguroDbContext>(o => o.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
@@ -27,7 +28,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 
 });
+
+builder.Services.AddScoped<ISeguroService, SeguroService>();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
