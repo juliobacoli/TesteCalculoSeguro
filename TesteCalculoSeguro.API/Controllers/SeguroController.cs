@@ -10,14 +10,14 @@ public class SeguroController : Controller
 {
     private readonly ISeguroService _seguro;
 
-    [HttpGet]
+    [HttpGet("obterCarros")]
     public async Task<IActionResult> ObterCarros()
     {
         var carros = _seguro.ObterCarros();
         return Ok(carros);
     }
 
-    [HttpGet]
+    [HttpGet("segurado")]
     public async Task<IActionResult> ObterSegurado()
     {
         var segurado = new Segurado()

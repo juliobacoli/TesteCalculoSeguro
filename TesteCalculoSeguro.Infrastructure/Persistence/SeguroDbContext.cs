@@ -21,14 +21,6 @@ namespace TesteCalculoSeguro.Infrastructure.Persistence
 
             });              
 
-            Segurado.Add(new Segurado
-            {
-                Nome = "João Silva",
-                Cpf = "123.456.789-00",
-                Idade = 30
-            });
-
-            base.OnModelCreating(modelBuilder);
         }
     }
 }
