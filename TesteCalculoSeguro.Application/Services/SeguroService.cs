@@ -3,11 +3,11 @@ using TesteCalculoSeguro.Infrastructure.Persistence;
 
 namespace TesteCalculoSeguro.Application.Services
 {
-    public class Seguro : ISeguro
+    public class SeguroService : ISeguroService
     {
         private readonly SeguroDbContext _dbContext;
 
-        public Seguro(SeguroDbContext dbContext)
+        public SeguroService(SeguroDbContext dbContext)
         {
             _dbContext = dbContext;
         }

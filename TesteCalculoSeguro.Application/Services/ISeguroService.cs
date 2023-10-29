@@ -2,7 +2,7 @@
 
 namespace TesteCalculoSeguro.Application.Services
 {
-    public interface ISeguro
+    public interface ISeguroService
     {
         IEnumerable<Veiculo> ObterCarros();
     }
