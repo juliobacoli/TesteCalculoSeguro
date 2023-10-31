@@ -38,10 +38,13 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Seguro>> ObterSeguro()
+        public async Task<List<Seguro>> ObterSeguro()
         {
-            var seguro = await _dbContext.Seguro.ToListAsync();
-            return seguro;
+            var seguros = await _dbContext.Seguro
+                                        .Include(s => s.Veiculo)
+                                        .Include(s => s.Segurado)
+                                        .ToListAsync();
+            return seguros;
         }
     }
 }

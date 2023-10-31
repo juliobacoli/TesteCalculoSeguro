@@ -48,9 +48,9 @@ public class SeguroController : Controller
     }
 
     [HttpGet("obterSeguro")]
-    public IActionResult ObterSeguro()
+    public async Task<IActionResult> ObterSeguro()
     {
-        var seguro = _seguroService.ObterSeguro();
+        var seguro = await _seguroService.ObterSeguro();
         if (seguro == null)
         {
             return NotFound(); 
