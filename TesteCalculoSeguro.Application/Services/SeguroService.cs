@@ -1,5 +1,4 @@
 ﻿using TesteCalculoSeguro.Domain.Entities;
-using TesteCalculoSeguro.Infrastructure.Persistence;
 using TesteCalculoSeguro.Infrastructure.Repositories.Interfaces;
 
 namespace TesteCalculoSeguro.Application.Services;
@@ -8,14 +7,12 @@ public class SeguroService : ISeguroService
 {
     private const decimal MARGEM_SEGURANCA = 0.03M;
     private const decimal LUCRO = 0.05M;
-    private readonly SeguroDbContext _dbContext;
     private readonly ISeguroRepository _seguroRepository;
     private readonly IVeiculoRepository _veiculoRepository;
 
 
-    public SeguroService(SeguroDbContext dbContext, ISeguroRepository seguroRepository, IVeiculoRepository veiculoRepository)
+    public SeguroService(ISeguroRepository seguroRepository, IVeiculoRepository veiculoRepository)
     {
-        _dbContext = dbContext;
         _seguroRepository = seguroRepository;
         _veiculoRepository = veiculoRepository;
     }
@@ -70,5 +67,15 @@ public class SeguroService : ISeguroService
     {
         await _veiculoRepository.AdicionarVeiculos(veiculos);
         
+    }
+
+    public Task AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade)
+    {
+        return _seguroRepository.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade);
+    }
+
+    public Task AdicionarSeguro(Seguro seguro)
+    {
+        throw new NotImplementedException();
     }
 }

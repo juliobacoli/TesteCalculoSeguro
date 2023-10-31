@@ -16,6 +16,28 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
 
         }
 
+        public async Task AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo,
+                                          string nome, string cpf, int idade)
+        {
+            Veiculo veiculo = new Veiculo(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo);
+
+            Segurado segurado = new Segurado
+            {
+                Nome = nome,
+                Cpf = cpf,
+                Idade = idade
+            };
+
+            Seguro seguro = new Seguro
+            {
+                Veiculo = veiculo,
+                Segurado = segurado
+            };
+
+            await _dbContext.Seguro.AddAsync(seguro);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Seguro>> ObterSeguro()
         {
             var seguro = await _dbContext.Seguro.ToListAsync();

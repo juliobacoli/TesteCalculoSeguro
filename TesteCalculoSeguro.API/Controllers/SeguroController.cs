@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using TesteCalculoSeguro.Application.Services;
 using TesteCalculoSeguro.Domain.Entities;
 
@@ -63,6 +62,13 @@ public class SeguroController : Controller
     public async Task<IActionResult> AdicionarVeiculos(Veiculo veiculos)
     {
         await _seguroService.AdicionarVeiculos(veiculos);
+        return Ok();
+    }
+
+    [HttpPost("adicionarSeguro")]
+    public async Task<IActionResult> AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade)
+    {
+        await _seguroService.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade);
         return Ok();
     }
 }
