@@ -12,6 +12,7 @@ namespace TesteCalculoSeguro.Infrastructure.Persistence
 
         public DbSet<Segurado> Segurado { get; set; }
         public DbSet<Veiculo> Veiculo { get; set; }
+        public DbSet<Seguro> Seguro { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,13 +26,19 @@ namespace TesteCalculoSeguro.Infrastructure.Persistence
             {
                 x.HasKey(k => k.Id);
             });
+
+            modelBuilder.Entity<Seguro>(x =>
+            {
+                x.HasKey(k => k.Id);
+
+            });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("TesteCalculoSeguroDb");
+                optionsBuilder.UseSqlServer("Server=JULIOAVELL-PC;Database=Seguro;Integrated Security=True;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
     }

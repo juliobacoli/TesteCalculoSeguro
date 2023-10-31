@@ -5,7 +5,7 @@
 namespace TesteCalculoSeguro.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class PrimeiraMigration : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,11 +37,50 @@ namespace TesteCalculoSeguro.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Veiculo", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Seguro",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VeiculoId = table.Column<int>(type: "int", nullable: false),
+                    SeguradoCpf = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seguro", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Seguro_Segurado_SeguradoCpf",
+                        column: x => x.SeguradoCpf,
+                        principalTable: "Segurado",
+                        principalColumn: "Cpf",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Seguro_Veiculo_VeiculoId",
+                        column: x => x.VeiculoId,
+                        principalTable: "Veiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seguro_SeguradoCpf",
+                table: "Seguro",
+                column: "SeguradoCpf");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seguro_VeiculoId",
+                table: "Seguro",
+                column: "VeiculoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Seguro");
+
             migrationBuilder.DropTable(
                 name: "Segurado");
 

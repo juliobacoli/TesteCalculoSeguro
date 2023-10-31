@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TesteCalculoSeguro.Application.Services;
 using TesteCalculoSeguro.Infrastructure.Persistence;
+using TesteCalculoSeguro.Infrastructure.Repositories;
+using TesteCalculoSeguro.Infrastructure.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +31,10 @@ builder.Services.AddSwaggerGen(c =>
 
 });
 
-builder.Services.AddScoped<ISeguroService, SeguroService>();
+builder.Services.AddTransient<ISeguroService, SeguroService>();
+builder.Services.AddTransient<IVeiculoRepository, VeiculoRepository>();
+builder.Services.AddTransient<ISeguroRepository, SeguroRepository>();
+
 
 var app = builder.Build();
 

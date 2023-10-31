@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using TesteCalculoSeguro.Application.Services;
 using TesteCalculoSeguro.Domain.Entities;
 
@@ -8,17 +9,21 @@ namespace TesteCalculoSeguro.API.Controllers;
 [Route("api/seguros")]
 public class SeguroController : Controller
 {
-    private readonly ISeguroService _seguro;
+    private readonly ISeguroService _seguroService;
 
     public SeguroController(ISeguroService seguro)
     {
-        _seguro = seguro;
+        _seguroService = seguro;
     }
 
-    [HttpGet("obterCarros")]
-    public async Task<IActionResult> ObterCarros()
+    [HttpGet("obterVeiculos")]
+    public async Task<IActionResult> ObterVeiculos()
     {
-        var carros = _seguro.ObterCarros();
+        var carros = await _seguroService.ObterVeiculos();
+        if (carros == null)
+        {
+            return NotFound();
+        }
         return Ok(carros);
     }
 
@@ -38,8 +43,26 @@ public class SeguroController : Controller
     [HttpGet("valorSeguro")]
     public decimal ObterValorSeguro(decimal valorVeiculo)
     {
-        var valor = _seguro.CalcularValorSeguro(valorVeiculo);
+        var valor = _seguroService.CalcularValorSeguro(valorVeiculo);
 
         return valor;
+    }
+
+    [HttpGet("obterSeguro")]
+    public IActionResult ObterSeguro()
+    {
+        var seguro = _seguroService.ObterSeguro();
+        if (seguro == null)
+        {
+            return NotFound(); 
+        }
+        return Ok(seguro);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AdicionarVeiculos(Veiculo veiculos)
+    {
+        var resultado = await _seguroService.AdicionarVeiculos(veiculos);
+        return Ok(resultado);
     }
 }

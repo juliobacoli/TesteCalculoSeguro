@@ -1,17 +1,23 @@
 ﻿using TesteCalculoSeguro.Domain.Entities;
 using TesteCalculoSeguro.Infrastructure.Persistence;
+using TesteCalculoSeguro.Infrastructure.Repositories.Interfaces;
 
 namespace TesteCalculoSeguro.Application.Services;
 
 public class SeguroService : ISeguroService
 {
     private const decimal MARGEM_SEGURANCA = 0.03M;
-    private const decimal LUCRO = 5.0M;
+    private const decimal LUCRO = 0.05M;
     private readonly SeguroDbContext _dbContext;
+    private readonly ISeguroRepository _seguroRepository;
+    private readonly IVeiculoRepository _veiculoRepository;
 
-    public SeguroService(SeguroDbContext dbContext)
+
+    public SeguroService(SeguroDbContext dbContext, ISeguroRepository seguroRepository, IVeiculoRepository veiculoRepository)
     {
         _dbContext = dbContext;
+        _seguroRepository = seguroRepository;
+        _veiculoRepository = veiculoRepository;
     }
 
     public decimal CalcularTaxaDeRisco(decimal valorVeiculo)
@@ -48,9 +54,21 @@ public class SeguroService : ISeguroService
         return premioComercial;
     }
 
-    public IEnumerable<Veiculo> ObterCarros()
+    public async Task<IEnumerable<Veiculo>> ObterVeiculos()
     {
-        var veiculos = _dbContext.Veiculo;
+        var veiculos = await _veiculoRepository.ObterVeiculos();
         return veiculos;
+    }
+
+    public async Task<IEnumerable<Seguro>> ObterSeguro()
+    {
+        var seguro = await _seguroRepository.ObterSeguro();
+        return seguro;
+    }
+
+    public async Task<IEnumerable<Veiculo>> AdicionarVeiculos(Veiculo veiculos)
+    {
+        var veiculo = await _veiculoRepository.AdicionarVeiculos(veiculos);
+        return veiculo;
     }
 }

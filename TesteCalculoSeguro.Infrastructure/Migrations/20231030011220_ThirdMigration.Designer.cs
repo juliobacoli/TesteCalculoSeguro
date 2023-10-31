@@ -11,8 +11,8 @@ using TesteCalculoSeguro.Infrastructure.Persistence;
 namespace TesteCalculoSeguro.Infrastructure.Migrations
 {
     [DbContext(typeof(SeguroDbContext))]
-    [Migration("20231029040245_PrimeiraMigration")]
-    partial class PrimeiraMigration
+    [Migration("20231030011220_ThirdMigration")]
+    partial class ThirdMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,30 @@ namespace TesteCalculoSeguro.Infrastructure.Migrations
                     b.ToTable("Segurado");
                 });
 
+            modelBuilder.Entity("TesteCalculoSeguro.Domain.Entities.Seguro", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("SeguradoCpf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("VeiculoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SeguradoCpf");
+
+                    b.HasIndex("VeiculoId");
+
+                    b.ToTable("Seguro");
+                });
+
             modelBuilder.Entity("TesteCalculoSeguro.Domain.Entities.Veiculo", b =>
                 {
                     b.Property<int>("Id")
@@ -62,6 +86,25 @@ namespace TesteCalculoSeguro.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Veiculo");
+                });
+
+            modelBuilder.Entity("TesteCalculoSeguro.Domain.Entities.Seguro", b =>
+                {
+                    b.HasOne("TesteCalculoSeguro.Domain.Entities.Segurado", "Segurado")
+                        .WithMany()
+                        .HasForeignKey("SeguradoCpf")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TesteCalculoSeguro.Domain.Entities.Veiculo", "Veiculo")
+                        .WithMany()
+                        .HasForeignKey("VeiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Segurado");
+
+                    b.Navigation("Veiculo");
                 });
 #pragma warning restore 612, 618
         }
