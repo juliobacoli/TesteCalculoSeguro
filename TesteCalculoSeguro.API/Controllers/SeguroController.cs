@@ -40,7 +40,7 @@ public class SeguroController : Controller
     }
 
     [HttpGet("valorSeguro")]
-    public decimal ObterValorSeguro(decimal valorVeiculo)
+    public Task<decimal> ObterValorSeguro(decimal valorVeiculo)
     {
         var valor = _seguroService.CalcularValorSeguro(valorVeiculo);
 

@@ -17,36 +17,36 @@ public class SeguroService : ISeguroService
         _veiculoRepository = veiculoRepository;
     }
 
-    public decimal CalcularTaxaDeRisco(decimal valorVeiculo)
+    public async Task<decimal> CalcularTaxaDeRisco(decimal valorVeiculo)
     {
         return (valorVeiculo * 0.5m) / (0.2m * valorVeiculo);
     }
 
-    public decimal CalcularPremioDeRisco(decimal taxaDeRisco, decimal valorVeiculo)
+    public async Task<decimal> CalcularPremioDeRisco(decimal taxaDeRisco, decimal valorVeiculo)
     {
         taxaDeRisco /= 100; 
         decimal premioDeRisco = taxaDeRisco * valorVeiculo;
         return Math.Round(premioDeRisco, 2); // arredonda o prêmio de risco para duas casas decimais
     }
 
-    public decimal CalcularPremioPuro(decimal premioDeRisco)
+    public async Task<decimal> CalcularPremioPuro(decimal premioDeRisco)
     {
         decimal resultado = premioDeRisco * (1 + MARGEM_SEGURANCA);
         return Math.Round(resultado, 2);
     }
 
-    public decimal CalcularPremioComercial(decimal premioPuro)
+    public async Task<decimal> CalcularPremioComercial(decimal premioPuro)
     {
         return LUCRO * premioPuro;
     }
 
 
-    public decimal CalcularValorSeguro(decimal valorVeiculo)
+    public async Task<decimal> CalcularValorSeguro(decimal valorVeiculo)
     {
-        decimal taxaDeRisco = CalcularTaxaDeRisco(valorVeiculo);
-        decimal premioDeRisco = CalcularPremioDeRisco(taxaDeRisco, valorVeiculo);
-        decimal premioPuro = CalcularPremioPuro(premioDeRisco);
-        decimal premioComercial = CalcularPremioComercial(premioPuro);
+        decimal taxaDeRisco = await CalcularTaxaDeRisco(valorVeiculo);
+        decimal premioDeRisco = await CalcularPremioDeRisco(taxaDeRisco, valorVeiculo);
+        decimal premioPuro = await CalcularPremioPuro(premioDeRisco);
+        decimal premioComercial = await CalcularPremioComercial(premioPuro);
 
         return premioComercial;
     }
@@ -74,8 +74,4 @@ public class SeguroService : ISeguroService
         return _seguroRepository.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade);
     }
 
-    public Task AdicionarSeguro(Seguro seguro)
-    {
-        throw new NotImplementedException();
-    }
 }
