@@ -66,9 +66,9 @@ public class SeguroService : ISeguroService
         return seguro;
     }
 
-    public async Task<IEnumerable<Veiculo>> AdicionarVeiculos(Veiculo veiculos)
+    public async Task AdicionarVeiculos(Veiculo veiculos)
     {
-        var veiculo = await _veiculoRepository.AdicionarVeiculos(veiculos);
-        return veiculo;
+        await _veiculoRepository.AdicionarVeiculos(veiculos);
+        
     }
 }

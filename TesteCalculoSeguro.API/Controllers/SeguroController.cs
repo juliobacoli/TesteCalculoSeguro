@@ -59,10 +59,10 @@ public class SeguroController : Controller
         return Ok(seguro);
     }
 
-    [HttpPost]
+    [HttpPost("adicionarVeiculo")]
     public async Task<IActionResult> AdicionarVeiculos(Veiculo veiculos)
     {
-        var resultado = await _seguroService.AdicionarVeiculos(veiculos);
-        return Ok(resultado);
+        await _seguroService.AdicionarVeiculos(veiculos);
+        return Ok();
     }
 }
