@@ -31,13 +31,11 @@ builder.Services.AddSwaggerGen(c =>
 
 });
 
-builder.Services.AddTransient<ISeguroService, SeguroService>();
-builder.Services.AddTransient<IVeiculoRepository, VeiculoRepository>();
-builder.Services.AddTransient<ISeguroRepository, SeguroRepository>();
-
+builder.Services.AddScoped<ISeguroService, SeguroService>();
+builder.Services.AddScoped<IVeiculoRepository, VeiculoRepository>();
+builder.Services.AddScoped<ISeguroRepository, SeguroRepository>();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

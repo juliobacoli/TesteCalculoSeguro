@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteCalculoSeguro.API", "TesteCalculoSeguro.API\TesteCalculoSeguro.API.csproj", "{197BD1ED-2248-4FA9-80CD-952AED14D5A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteCalculoSeguro.API", "TesteCalculoSeguro.API\TesteCalculoSeguro.API.csproj", "{197BD1ED-2248-4FA9-80CD-952AED14D5A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteCalculoSeguro.Domain", "TesteCalculoSeguro.Domain\TesteCalculoSeguro.Domain.csproj", "{721E9967-B085-43AC-97B8-D092C131C10D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteCalculoSeguro.Domain", "TesteCalculoSeguro.Domain\TesteCalculoSeguro.Domain.csproj", "{721E9967-B085-43AC-97B8-D092C131C10D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteCalculoSeguro.Infrastructure", "TesteCalculoSeguro.Infrastructure\TesteCalculoSeguro.Infrastructure.csproj", "{BDCD989E-1298-45FE-93C3-A3B67A5A6630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteCalculoSeguro.Infrastructure", "TesteCalculoSeguro.Infrastructure\TesteCalculoSeguro.Infrastructure.csproj", "{BDCD989E-1298-45FE-93C3-A3B67A5A6630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteCalculoSeguro.Application", "TesteCalculoSeguro.Application\TesteCalculoSeguro.Application.csproj", "{F3F72CBD-A20F-4455-80A4-D9FDD97FBBAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteCalculoSeguro.Application", "TesteCalculoSeguro.Application\TesteCalculoSeguro.Application.csproj", "{F3F72CBD-A20F-4455-80A4-D9FDD97FBBAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteCalculoSeguto.UnitTests", "TesteCalculoSeguto.UnitTests\TesteCalculoSeguto.UnitTests.csproj", "{43574E6F-50F1-4804-B467-8EBA6762E2DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F3F72CBD-A20F-4455-80A4-D9FDD97FBBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3F72CBD-A20F-4455-80A4-D9FDD97FBBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3F72CBD-A20F-4455-80A4-D9FDD97FBBAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43574E6F-50F1-4804-B467-8EBA6762E2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43574E6F-50F1-4804-B467-8EBA6762E2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43574E6F-50F1-4804-B467-8EBA6762E2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43574E6F-50F1-4804-B467-8EBA6762E2DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

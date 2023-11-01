@@ -40,10 +40,9 @@ public class SeguroController : Controller
     }
 
     [HttpGet("valorSeguro")]
-    public Task<decimal> ObterValorSeguro(decimal valorVeiculo)
+    public Task<decimal> ObterCauculoValorSeguro(decimal valorVeiculo)
     {
         var valor = _seguroService.CalcularValorSeguro(valorVeiculo);
-
         return valor;
     }
 
@@ -56,6 +55,14 @@ public class SeguroController : Controller
             return NotFound(); 
         }
         return Ok(seguro);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterCalculoAritmetica()
+    {
+        await _seguroService.ObterCalculoAritmetica();
+        
+        return Ok();
     }
 
     [HttpPost("adicionarVeiculo")]

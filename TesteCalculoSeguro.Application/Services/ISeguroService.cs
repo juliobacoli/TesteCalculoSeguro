@@ -8,6 +8,7 @@ namespace TesteCalculoSeguro.Application.Services
         Task<IEnumerable<Seguro>> ObterSeguro();
         Task AdicionarVeiculos(Veiculo veiculos);
         Task AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade);
+        Task ObterCalculoAritmetica();
         Task<decimal> CalcularValorSeguro(decimal valorVeiculo);
         Task<decimal> CalcularTaxaDeRisco(decimal valorVeiculo);
         Task<decimal> CalcularPremioDeRisco(decimal taxaDeRisco, decimal valorVeiculo);

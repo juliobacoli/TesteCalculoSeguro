@@ -46,5 +46,10 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
                                         .ToListAsync();
             return seguros;
         }
+
+        public async Task ObterCalculoAritmetica()
+        {
+            await Task.Delay(100);
+        }
     }
 }
