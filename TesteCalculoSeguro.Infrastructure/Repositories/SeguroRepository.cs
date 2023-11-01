@@ -17,7 +17,7 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
         }
 
         public async Task AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo,
-                                          string nome, string cpf, int idade)
+                                          string nome, string cpf, int idade, decimal valorSeguro)
         {
             Veiculo veiculo = new Veiculo(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo);
 
@@ -31,7 +31,8 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
             Seguro seguro = new Seguro
             {
                 Veiculo = veiculo,
-                Segurado = segurado
+                Segurado = segurado,
+                ValorSeguro = valorSeguro
             };
 
             await _dbContext.Seguro.AddAsync(seguro);
@@ -50,6 +51,18 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
         public async Task ObterCalculoAritmetica()
         {
             await Task.Delay(100);
+        }
+
+        public async Task SalvarValorSeguro(decimal valorSeguro)
+        {
+
+            Seguro seguro = new Seguro
+            {
+                ValorSeguro = valorSeguro
+            };
+
+            await _dbContext.Seguro.AddAsync(seguro);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

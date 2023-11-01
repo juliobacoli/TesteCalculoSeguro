@@ -32,6 +32,10 @@ namespace TesteCalculoSeguro.Infrastructure.Persistence
                 x.HasKey(k => k.Id);
 
             });
+
+            modelBuilder.Entity<Seguro>()
+                        .Property(s => s.ValorSeguro)
+                        .HasColumnType("decimal(18, 2)");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -48,6 +48,8 @@ public class SeguroService : ISeguroService
         decimal premioPuro = await CalcularPremioPuro(premioDeRisco);
         decimal premioComercial = await CalcularPremioComercial(premioPuro);
 
+        await _seguroRepository.SalvarValorSeguro(premioComercial);
+
         return premioComercial;
     }
 
@@ -69,9 +71,9 @@ public class SeguroService : ISeguroService
         
     }
 
-    public async Task AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade)
+    public async Task AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade, decimal valorSeguro)
     {
-        await _seguroRepository.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade);
+        await _seguroRepository.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade, valorSeguro);
     }
 
     public async Task ObterCalculoAritmetica()

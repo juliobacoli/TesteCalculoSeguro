@@ -73,9 +73,9 @@ public class SeguroController : Controller
     }
 
     [HttpPost("adicionarSeguro")]
-    public async Task<IActionResult> AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade)
+    public async Task<IActionResult> AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade, decimal valorSeguro)
     {
-        await _seguroService.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade);
+        await _seguroService.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade, valorSeguro);
         return Ok();
     }
 }

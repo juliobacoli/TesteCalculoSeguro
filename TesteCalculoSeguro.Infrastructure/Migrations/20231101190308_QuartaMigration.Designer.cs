@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesteCalculoSeguro.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using TesteCalculoSeguro.Infrastructure.Persistence;
 namespace TesteCalculoSeguro.Infrastructure.Migrations
 {
     [DbContext(typeof(SeguroDbContext))]
-    partial class SeguroDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231101190308_QuartaMigration")]
+    partial class QuartaMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
