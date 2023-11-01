@@ -38,9 +38,9 @@ public class SeguroServiceTest
 
         _seguroRepository.Setup(x => x.ObterSeguro()).ReturnsAsync(listaSeguros);
 
-        var resultado = _seguroService.ObterSeguro();
+        var resultado = await _seguroService.ObterSeguro();
 
-        UnitTesting.Assert.IsNotNull(resultado.Result);
+        UnitTesting.Assert.IsNotNull(resultado);
     }
 
     [TestMethod]
@@ -50,8 +50,8 @@ public class SeguroServiceTest
 
         _seguroRepository.Setup(x => x.ObterSeguro()).ReturnsAsync(listaSeguros);
 
-        var resultado = _seguroService.ObterSeguro();
+        var resultado = await _seguroService.ObterSeguro();
 
-        UnitTesting.Assert.AreEqual(resultado.Result.Count(), 0);
+        UnitTesting.Assert.AreEqual(resultado.Count(), 0);
     }
 }
