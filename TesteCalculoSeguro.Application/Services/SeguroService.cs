@@ -37,7 +37,7 @@ public class SeguroService : ISeguroService
 
     public async Task<decimal> CalcularPremioComercial(decimal premioPuro)
     {
-        return LUCRO * premioPuro;
+        return (LUCRO * premioPuro) + premioPuro;
     }
 
 
