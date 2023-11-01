@@ -48,8 +48,6 @@ public class SeguroService : ISeguroService
         decimal premioPuro = await CalcularPremioPuro(premioDeRisco);
         decimal premioComercial = await CalcularPremioComercial(premioPuro);
 
-        await _seguroRepository.SalvarValorSeguro(premioComercial);
-
         return premioComercial;
     }
 
@@ -65,6 +63,12 @@ public class SeguroService : ISeguroService
         return seguro;
     }
 
+    public async Task<IEnumerable<Segurado>> ObterSegurado()
+    {
+        var segurado = await _seguroRepository.ObterSegurado();
+        return segurado;
+    }
+
     public async Task AdicionarVeiculos(Veiculo veiculos)
     {
         await _veiculoRepository.AdicionarVeiculos(veiculos);
@@ -76,8 +80,4 @@ public class SeguroService : ISeguroService
         await _seguroRepository.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade, valorSeguro);
     }
 
-    public async Task ObterCalculoAritmetica()
-    {
-        await _seguroRepository.ObterCalculoAritmetica();
-    }
 }

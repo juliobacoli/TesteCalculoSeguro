@@ -26,15 +26,14 @@ public class SeguroController : Controller
         return Ok(carros);
     }
 
-    [HttpGet("segurado")]
-    public IActionResult ObterSegurado()
+    [HttpGet("obterSegurado")]
+    public async Task<IActionResult> ObterSegurado()
     {
-        var segurado = new Segurado()
+        var segurado = await _seguroService.ObterSegurado();
+        if (segurado == null)
         {
-            Nome = "John Doe",
-            Cpf = "123.456.789-10",
-            Idade = 20
-        };
+            return NotFound();
+        }
 
         return Ok(segurado);
     }
@@ -55,14 +54,6 @@ public class SeguroController : Controller
             return NotFound(); 
         }
         return Ok(seguro);
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> ObterCalculoAritmetica()
-    {
-        await _seguroService.ObterCalculoAritmetica();
-        
-        return Ok();
     }
 
     [HttpPost("adicionarVeiculo")]

@@ -39,6 +39,12 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Segurado>> ObterSegurado()
+        {
+            var segurado = await _dbContext.Segurado.ToListAsync();
+            return segurado;
+        }
+
         public async Task<List<Seguro>> ObterSeguro()
         {
             var seguros = await _dbContext.Seguro
@@ -48,21 +54,5 @@ namespace TesteCalculoSeguro.Infrastructure.Repositories
             return seguros;
         }
 
-        public async Task ObterCalculoAritmetica()
-        {
-            await Task.Delay(100);
-        }
-
-        public async Task SalvarValorSeguro(decimal valorSeguro)
-        {
-
-            Seguro seguro = new Seguro
-            {
-                ValorSeguro = valorSeguro
-            };
-
-            await _dbContext.Seguro.AddAsync(seguro);
-            await _dbContext.SaveChangesAsync();
-        }
     }
 }
