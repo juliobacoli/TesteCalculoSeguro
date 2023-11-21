@@ -71,13 +71,13 @@ public class SeguroService : ISeguroService
 
     public async Task AdicionarVeiculos(Veiculo veiculos)
     {
-        await _veiculoRepository.AdicionarVeiculos(veiculos);
+        _veiculoRepository.AdicionarVeiculos(veiculos);
         
     }
 
     public async Task AdicionarSeguro(double valorDoVeiculo, string marcaDoVeiculo, string modeloDoVeiculo, string nome, string cpf, int idade, decimal valorSeguro)
     {
-        await _seguroRepository.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade, valorSeguro);
+        _seguroRepository.AdicionarSeguro(valorDoVeiculo, marcaDoVeiculo, modeloDoVeiculo, nome, cpf, idade, valorSeguro);
     }
 
 }
